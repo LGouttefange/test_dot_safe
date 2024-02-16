@@ -1,0 +1,19 @@
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+  },
+  parser: "vue-eslint-parser",
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+  },
+  extends: ["@nuxtjs/eslint-config-typescript", "plugin:prettier/recommended"],
+  plugins: [],
+  ignorePatterns: ["*.yml", "*.json"],
+  rules: {
+    "vue/no-multiple-template-root": 0,
+    "vue/multi-word-component-names": 0,
+    "import/no-named-as-default-member": 0,
+  },
+};

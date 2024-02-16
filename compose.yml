@@ -1,0 +1,38 @@
+version: '3.8'
+
+
+services:
+  api:
+    build:
+      dockerfile: _docker/api/Dockerfile
+      context: .
+    volumes:
+      - ./api:/var/www:delegated
+    depends_on: 
+      - db
+    ports:
+      - "80:8000"
+
+  front:
+    build:
+      dockerfile: _docker/front/Dockerfile
+      context: .
+    volumes:
+      - ./front:/var/www:delegated
+    ports:
+      - "3000:3000"
+    working_dir: /var/www
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-exercice}
+      POSTGRES_USER: ${POSTGRES_USER:-exercice}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-exercice}
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+        
+volumes:
+  db_data:
