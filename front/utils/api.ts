@@ -11,5 +11,8 @@ export const fetchApi = (
 ): Promise<TypedInternalResponse> =>
   $fetch($url, {
     ...$options,
+    headers: {
+        accept: 'application/ld+json'
+    },
     baseURL: "http://localhost/api",
   });

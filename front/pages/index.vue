@@ -56,7 +56,7 @@ const items = (row) => [
 ]
 
 const { data: todos } = await useAsyncData("todos", () => {
-  return fetchApi("/todos");
+  return fetchApi("/todos").then(response => response['hydra:member']);
 });
 const updateCompleted = debounce(
   (row: Todo, completed: boolean) =>
